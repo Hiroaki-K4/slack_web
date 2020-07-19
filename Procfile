@@ -1,1 +1,1 @@
-worker: python postToSlack.py
+web: python postToSlack.py runserver 0.0.0.0:5000
