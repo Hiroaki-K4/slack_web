@@ -38,15 +38,18 @@ def main():
     """
     Main method
     """
+    headers = {
+        "User-Agent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:47.0) Gecko/20100101 Firefox/47.0"
+        }
     url_name = "https://openaccess.thecvf.com/CVPR2020"
-    url = requests.get(url_name)
+    url = requests.get(url_name, headers)
     soup = BeautifulSoup(url.content, "html.parser")
     elems = soup.find_all("dt")
     for elem in elems:
         url = elem.next.next.attrs['href']
         ori_link = "https://openaccess.thecvf.com/"
         contents_url = ori_link + url
-        paper_link = requests.get(contents_url)
+        paper_link = requests.get(contents_url, headers)
         paper_soup = BeautifulSoup(paper_link.content, "html.parser")
         title = paper_soup.find('div', id="papertitle").text
         abstract = paper_soup.find('div', id="abstract").text
@@ -61,10 +64,10 @@ def main():
                 "mrkdwn_in": ["text", "pretext"]}
         attachments.append(attachment)
         if class_name == "adver":
-            slack = slackweb.Slack(url="https://hooks.slack.com/services/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")
+            slack = slackweb.Slack(url="https://hooks.slack.com/services/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")
             slack.notify(attachments=attachments)
         else:
-            slack = slackweb.Slack(url="https://hooks.slack.com/services/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")
+            slack = slackweb.Slack(url="https://hooks.slack.com/services/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")
             slack.notify(attachments=attachments)
 
         time.sleep(7200)
