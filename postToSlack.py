@@ -64,10 +64,10 @@ def main():
                 "mrkdwn_in": ["text", "pretext"]}
         attachments.append(attachment)
         if class_name == "adver":
-            slack = slackweb.Slack(url="https://hooks.slack.com/services/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")
+            slack = slackweb.Slack(url="https://hooks.slack.com/services/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")
             slack.notify(attachments=attachments)
         else:
-            slack = slackweb.Slack(url="https://hooks.slack.com/services/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")
+            slack = slackweb.Slack(url="https://hooks.slack.com/services/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")
             slack.notify(attachments=attachments)
 
         time.sleep(7200)
