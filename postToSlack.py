@@ -10,6 +10,8 @@ import slackweb
 import requests
 from tqdm import tqdm
 from bs4 import BeautifulSoup
+from googletrans import Translator
+translator = Translator()
 
 
 def sort_class(abstract):
@@ -53,24 +55,30 @@ def main():
         paper_soup = BeautifulSoup(paper_link.content, "html.parser")
         title = paper_soup.find('div', id="papertitle").text
         abstract = paper_soup.find('div', id="abstract").text
+        abstract_ja = translator.translate(abstract, src='en', dest='ja')
+        abstract_ja = str(abstract_ja.text)
         pdf = paper_soup.find("dd").find("a").attrs['href'][6:]
         pdf_link = ori_link + pdf
         class_name = sort_class(abstract)
 
-        attachments = []
-        attachment = {"title": abstract,
-                "pretext": title,
-                "text": pdf_link,
-                "mrkdwn_in": ["text", "pretext"]}
-        attachments.append(attachment)
+        attachments_title = []
+        attachments_contents = []
+        paper_title = {"title": title,
+                "text": pdf_link}
+        paper_contents = {"title": abstract,
+                "text": abstract_ja}
+        attachments_title.append(paper_title)
+        attachments_contents.append(paper_contents)
         if class_name == "adver":
             slack = slackweb.Slack(url="https://hooks.slack.com/services/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")
-            slack.notify(attachments=attachments)
+            slack.notify(attachments=attachments_title)
+            slack.notify(attachments=attachments_contents)
         else:
             slack = slackweb.Slack(url="https://hooks.slack.com/services/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")
-            slack.notify(attachments=attachments)
+            slack.notify(attachments=attachments_title)
+            slack.notify(attachments=attachments_contents)
 
-        time.sleep(5400)
+        time.sleep(3600)
 
 
 if __name__ == "__main__":
