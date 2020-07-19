@@ -8,7 +8,7 @@ import re
 import time
 import slackweb
 import requests
-# from tqdm import tqdm
+from tqdm import tqdm
 from bs4 import BeautifulSoup
 
 
@@ -45,7 +45,7 @@ def main():
     url = requests.get(url_name, headers)
     soup = BeautifulSoup(url.content, "html.parser")
     elems = soup.find_all("dt")
-    for elem in elems:
+    for elem in tqdm(elems):
         url = elem.next.next.attrs['href']
         ori_link = "https://openaccess.thecvf.com/"
         contents_url = ori_link + url
