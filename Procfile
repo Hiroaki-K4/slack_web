@@ -1,1 +1,1 @@
-web: python postToSlack.py
+worker: python postToSlack.py
