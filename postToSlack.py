@@ -70,7 +70,7 @@ def main():
             slack = slackweb.Slack(url="https://hooks.slack.com/services/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")
             slack.notify(attachments=attachments)
 
-        time.sleep(7200)
+        time.sleep(5400)
 
 
 if __name__ == "__main__":
