@@ -1,1 +1,1 @@
-web: python postToSlack.py
+web: (python -m http.server $PORT &) && (python postToSlack.py)

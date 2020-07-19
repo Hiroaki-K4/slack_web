@@ -10,8 +10,7 @@ import slackweb
 import requests
 from tqdm import tqdm
 from bs4 import BeautifulSoup
-import os
-port = int(os.environ.get(“PORT”, 5000))
+
 
 def sort_class(abstract):
     """
