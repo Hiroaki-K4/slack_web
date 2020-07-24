@@ -72,11 +72,11 @@ def main():
         attachments_title.append(paper_title)
         attachments_contents.append(paper_contents)
         if class_name == "adver":
-            slack = slackweb.Slack(url="https://hooks.slack.com/services/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")
+            slack = slackweb.Slack(url="https://hooks.slack.com/services/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")
             slack.notify(attachments=attachments_title)
             slack.notify(attachments=attachments_contents)
         else:
-            slack = slackweb.Slack(url="https://hooks.slack.com/services/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")
+            slack = slackweb.Slack(url="https://hooks.slack.com/services/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")
             slack.notify(attachments=attachments_title)
             slack.notify(attachments=attachments_contents)
 
