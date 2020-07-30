@@ -68,7 +68,7 @@ def main():
 
     date = l_strip[0]
     min_number = int(l_strip[1])
-    max_number = min_number + 20
+    max_number = min_number + 15
     total_number = len(elems)
     if max_number >= total_number:
         max_number = total_number
@@ -100,15 +100,15 @@ def main():
         attachments_title.append(paper_title)
         attachments_contents.append(paper_contents)
         if class_name == "adver":
-            slack = slackweb.Slack(url="https://hooks.slack.com/services/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")
+            slack = slackweb.Slack(url="https://hooks.slack.com/services/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")
             slack.notify(attachments=attachments_title)
             slack.notify(attachments=attachments_contents)
         else:
-            slack = slackweb.Slack(url="https://hooks.slack.com/services/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")
+            slack = slackweb.Slack(url="https://hooks.slack.com/services/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")
             slack.notify(attachments=attachments_title)
             slack.notify(attachments=attachments_contents)
 
-        time.sleep(1)
+        time.sleep(2)
 
     text_list = [date, str(max_number)]
     with tempfile.TemporaryDirectory() as temp_path:
